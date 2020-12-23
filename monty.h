@@ -44,7 +44,7 @@ int token2;
 
 void open_file(char *filename);
 char **parse_tok(char *str);
-void (*get_op_function(char *str))(stack_t **, unsigned int);
+void (*get_op_function(char *str, unsigned int line))(stack_t **, unsigned int);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
