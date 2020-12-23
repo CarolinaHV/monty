@@ -2,10 +2,9 @@
 /**
  * push -¨Push an element to the stack
  * @stack: pointer to top of stack
- * @line_number: Line number file
- * @n: variable
+ * @line_number: unused
  */
-void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *top;
 	stack_t *new_node;
@@ -13,7 +12,7 @@ void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	top = *stack;
 
 	new_node = malloc(sizeof(stack_t));
-	
+
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed");

@@ -2,11 +2,10 @@
 /**
  * get_op_function - This function select the function to exec.
  * @str: Argument operator passed
- * @stack: Ponter to the stack
- * @line_number: Line number in the file
+ * @line: Line number in the file
  * Return: None
  **/
-void (*get_op_function(char *str))(stack_t **, unsigned int)
+void (*get_op_function(char *str, unsigned int line))(stack_t **, unsigned int)
 {
 	int i = 0;
 
@@ -21,46 +20,39 @@ void (*get_op_function(char *str))(stack_t **, unsigned int)
 		{NULL, NULL}
 	};
 
-	while (i < 7)
+	while (ops[i].f != NULL && strcmp(ops[i].opcode, str) != 0)
 	{
-		if (strcmp(str, ops[i].opcode) == 0)
-		{
-			return (ops[i].f);
-		}
 		i++;
-		if (str[0] == '#')
-		{
-			nop = ()
-		}
-		
 	}
-	return (0);
+	return (ops[i].f);
+	fprintf(stderr, "L%d: unknow instruction %s\n", line, str);
+	exit(EXIT_FAILURE);
 }
 
-
 /**
- * parse - parse arguments for opcode
+ * parse_tok - parse arguments for opcode
  * @str: argument
  * Return: token
  */
-char parse(char *str)
+char **parse_tok(char *str)
 {
-	char *token = NULL;
+	char **token;
 	char *delim = "\n\t ";
+	int i;
 
-	token = malloc(sizeof(char *));
+	token = malloc(sizeof(char *) * 3);
 	if (token == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
-	token = strtok(str, delim);
+	token[0] = strtok(str, delim);
 
-	while (token != NULL)
+	for (i = 1; token != NULL && i < 2; i++)
 	{
-		token = strtok(NULL, delim);
+		token[i] = strtok(NULL, delim);
 	}
-	token = NULL;
+	token[i] = NULL;
 	return (token);
 }
