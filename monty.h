@@ -9,6 +9,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,12 +40,12 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+int token2;
 
 void open_file(char *filename);
-void (*get_op_function(char *str))(stack_t **stack, unsigned int line_number);
+char **parse_tok(char *str);
+void (*get_op_function(char *str))(stack_t **, unsigned int);
 void push(stack_t **stack, unsigned int line_number);
-/*void (*get_op_function(char *str))(stack_t **, unsigned int);
-  void push(stack_t **stack, unsigned int line_number, int n);*/
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
