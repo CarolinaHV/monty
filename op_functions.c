@@ -5,28 +5,28 @@
  * @line_number: Line number file
  * @n: variable
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
+	stack_t *top;
 	stack_t *new_node;
-	stack_t *top = *stack;
-	int n = 99;
-	(void)line_number;
 
 	top = *stack;
 
 	new_node = malloc(sizeof(stack_t));
+	
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
+
 	new_node->prev = NULL;
-	new_node->n = n;
+	new_node->n = token2;
 	new_node->next = NULL;
 
 	if (*stack == NULL)
 		top->prev = new_node;
-	top = new_node;
+	*stack = new_node;
 }
 
 
@@ -35,13 +35,12 @@ void push(stack_t **stack, unsigned int line_number)
  * @stack: pointer to list stack
  * @line_number: unused variable
  */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
-
 	stack_t *tmp;
-	(void)line_number;
 
 	tmp = *stack;
+
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);
