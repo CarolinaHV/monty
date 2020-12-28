@@ -20,11 +20,14 @@ void (*get_op_function(char *str, unsigned int line))(stack_t **, unsigned int)
 		{NULL, NULL}
 	};
 
-	while (ops[i].f != NULL && strcmp(ops[i].opcode, str) != 0)
+	while(i < 7)
 	{
+		if (strcmp(str, ops[i].opcode) == 0)
+		{
+			return (ops[i].f);
+		}
 		i++;
 	}
-	return (ops[i].f);
 	fprintf(stderr, "L%d: unknow instruction %s\n", line, str);
 	exit(EXIT_FAILURE);
 }

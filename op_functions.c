@@ -21,10 +21,12 @@ void push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 
 	new_node->prev = NULL;
 	new_node->n = token2;
-	new_node->next = NULL;
+	new_node->next = *stack;
 
 	if (*stack == NULL)
+	{
 		top->prev = new_node;
+	}
 	*stack = new_node;
 }
 
