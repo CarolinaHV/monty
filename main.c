@@ -8,6 +8,7 @@ void open_file(char *filename)
 	FILE *fd;
 	size_t size_l_b = 0;
 	int line_count = 1;
+	stack_t *stack;
 	char *line_buffer = NULL;
 	char **token = NULL;
 
@@ -22,8 +23,10 @@ void open_file(char *filename)
 	while (getline(&line_buffer, &size_l_b, fd) != -1)
 	{
 		token = parse_tok(line_buffer);
+		get_op_function(token[0], line_count)(&stack, line_count);
 		line_count++;
 		token2 = atoi(token[1]);
+		free(token);
 	}
 	free(line_buffer);
 	line_buffer = NULL;
